@@ -1,14 +1,13 @@
 // 语言
-// import { lang } from '@/settings/designSetting'
 import { createI18n } from 'vue-i18n' //引入vue-i18n组件
 import { getLocalStorage } from '@/utils'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
-import { LangEnum } from '@/enums/themeEnum'
-// import { LangStateType } from '@/store/modules/langStore/langStore.d'
+import { LangEnum, lang } from '@/enums/themeEnum'
+import { LangStateType } from '@/store/modules/langStore/langStore.d'
 import zh from './zh/index'
 import en from './en/index'
 
-const langStorage = getLocalStorage(LocalStorageEnum.GO_LANG_STORE)
+const langStorage: LangStateType = getLocalStorage(LocalStorageEnum.GO_LANG_STORE)
 
 // // 语言数组
 // export const langList = [
@@ -23,8 +22,10 @@ const langStorage = getLocalStorage(LocalStorageEnum.GO_LANG_STORE)
 // ]
 
 const i18n = createI18n({
-  locale: langStorage?.lang,
-  fallbackLocale: langStorage?.lang, //  没有英文的时候默认中文语言
+  legacy: false,
+  globalInjection: true, // 暂时版本好像不支持，后续再看
+  locale: langStorage?.lang || lang,
+  fallbackLocale: langStorage?.lang || lang, //  没有英文的时候默认中文语言
   messages: {
     [LangEnum.ZH]: zh,
     [LangEnum.EN]: en,
