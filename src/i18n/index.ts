@@ -23,7 +23,7 @@ const langStorage: LangStateType = getLocalStorage(LocalStorageEnum.GO_LANG_STOR
 
 const i18n = createI18n({
   legacy: false,
-  globalInjection: true, // 暂时版本好像不支持，后续再看
+  globalInjection: true, //全局使用$t方法
   locale: langStorage?.lang || lang,
   fallbackLocale: langStorage?.lang || lang, //  没有英文的时候默认中文语言
   messages: {

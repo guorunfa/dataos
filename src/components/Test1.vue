@@ -2,7 +2,6 @@
 import i18n from '@/i18n'
 import { ref, getCurrentInstance } from 'vue'
 //调用
-const t = i18n.global.t('')
 console.log('18', i18n.global.t('global.sys_set'))
 
 // import { I18n } from '@/components/I18n'

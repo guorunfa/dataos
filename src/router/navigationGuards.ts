@@ -3,9 +3,10 @@ import { loginCheck } from '@/utils/router'
 import { Router } from 'vue-router'
 export function navigationGuards(router: Router) {
   router.beforeEach(async (to, from, next) => {
-    const pagesVerification = router.getRoutes().findIndex((item) => {
-      item.name === to.name
-    })
+    console.log('nav')
+
+    const pagesVerification = router.getRoutes().findIndex((item) => item.name === to.name)
+
     if (pagesVerification === -1) {
       next({ name: PageEnum.ERROR_PAGE_404 })
     }

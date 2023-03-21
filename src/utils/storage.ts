@@ -1,3 +1,11 @@
+export const setLocalStorage = <T>(key: string, v: T) => {
+  try {
+    window.localStorage.setItem(key, JSON.stringify(v))
+  } catch (error) {
+    return false
+  }
+}
+
 /**
  * * 获取本地会话数据
  * @param key 键名
