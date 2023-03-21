@@ -5,7 +5,12 @@ export function navigationGuards(router: Router) {
   router.beforeEach(async (to, from, next) => {
     console.log('nav')
 
-    const pagesVerification = router.getRoutes().findIndex((item) => item.name === to.name)
+    const pagesVerification = router.getRoutes().findIndex((item) => {
+      console.log('item.name === to.name', item.name, to.name, from.name)
+
+      return item.name === to.name
+    })
+    console.log('router.getRoutes()', router.getRoutes())
 
     if (pagesVerification === -1) {
       next({ name: PageEnum.ERROR_PAGE_404 })
