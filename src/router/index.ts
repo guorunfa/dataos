@@ -4,20 +4,23 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { LoginRoute } from './base'
 import { navigationGuards } from './navigationGuards'
 import Layout from '@/layout/index.vue'
-const RootRoute: any[] = [
+const RootRoute: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
     redirect: PageEnum.BASE_HOME,
     component: Layout,
-    meta: {
-      title: 'home',
-    },
+    children: [
+      {
+        path: 'home',
+        name: 'home',
+        component: () => import('@/components/Test1.vue'),
+      },
+    ],
   },
   LoginRoute,
 ]
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(''),
   routes: RootRoute,
 })
 
@@ -25,3 +28,4 @@ export function setupRouter(app: App) {
   app.use(router)
   navigationGuards(router)
 }
+export default router

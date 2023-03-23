@@ -4,7 +4,7 @@ import App from './App.vue'
 import { componentRegistration, setupNaiveUI } from '@/plugins'
 import { setPinia } from '@/store'
 import i18n from './i18n'
-import { setupRouter } from './router'
+import router, { setupRouter } from './router'
 
 async function appInit() {
   const app = createApp(App)
@@ -17,6 +17,8 @@ async function appInit() {
   setPinia(app)
   // 挂在路由
   setupRouter(app)
+  // 路由准备就绪后挂载APP实例
+  await router.isReady()
   // 语言注册
   app.use(i18n)
   // 挂载到页面
