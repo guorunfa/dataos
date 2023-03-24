@@ -2,6 +2,8 @@
 import i18n from '@/i18n'
 import { FormInst } from 'naive-ui'
 import { ref, reactive } from 'vue'
+import { icon } from '@/plugins'
+const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
 //调用
 console.log('18', i18n.global.t('global.sys_set'))
 const formRef = ref<FormInst | null>(null)
@@ -28,24 +30,40 @@ const handleLoginClick = () => {}
 <template>
   <div class="home-header"></div>
   <div class="home-body">
-    <p>
-      <n-form ref="formRef" inline :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
+    <n-card class="home-body-login">
+      <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
         <n-form-item :label="$t('login.user_name')" path="name">
-          <n-input v-model:value="formValue.name" :placeholder="$t('global.form_account')" />
+          <n-input v-model:value="formValue.name" :placeholder="$t('global.form_account')">
+            <template #prefix>
+              <n-icon size="18">
+                <PersonOutlineIcon></PersonOutlineIcon>
+              </n-icon>
+            </template>
+          </n-input>
         </n-form-item>
         <n-form-item :label="$t('login.password')" path="pwd">
-          <n-input v-model:value="formValue.pwd" :placeholder="$t('global.form_password')" />
+          <n-input v-model:value="formValue.pwd" :placeholder="$t('global.form_password')">
+            <template #prefix>
+              <n-icon size="18">
+                <LockClosedOutlineIcon></LockClosedOutlineIcon>
+              </n-icon>
+            </template>
+          </n-input>
         </n-form-item>
         <n-form-item>
           <n-button type="primary" attr-type="button" @click="handleLoginClick"> {{ $t('login.form_button') }} </n-button>
         </n-form-item>
       </n-form>
-    </p>
+    </n-card>
   </div>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
+<style scoped lang="scss">
+.home-body {
+  display: flex;
+  &-login {
+    @extend .go-background-filter;
+    box-shadow: 0 0 20px 5px rgba(40, 40, 40, 0.3);
+  }
 }
 </style>
