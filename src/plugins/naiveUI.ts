@@ -1,4 +1,4 @@
-import { App } from "vue"
+import { App } from 'vue'
 import {
   create,
   NA,
@@ -99,7 +99,7 @@ import {
   NWatermark,
   NEmpty,
   NCollapseTransition,
-} from "naive-ui"
+} from 'naive-ui'
 
 const naiveUI = create({
   components: [
