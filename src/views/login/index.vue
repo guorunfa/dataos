@@ -24,7 +24,18 @@ const rules = {
     trigger: ['blur', 'input'],
   },
 }
-const handleLoginClick = () => {}
+const handleLoginClick = (e: MouseEvent) => {
+  e.preventDefault()
+  formRef.value?.validate()
+  formRef.value?.validate((errors) => {
+    if (!errors) {
+      window['$message'].success('Valid')
+    } else {
+      console.log(errors)
+      window['$message'].error('Invalid')
+    }
+  })
+}
 </script>
 
 <template>

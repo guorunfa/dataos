@@ -1,7 +1,7 @@
 export const LoginRoute = {
   path: '/login',
   name: 'Login',
-  component: () => import('@/components/Test1.vue'),
+  component: () => import('@/views/login/index.vue'),
   meta: {
     title: '登录',
   },

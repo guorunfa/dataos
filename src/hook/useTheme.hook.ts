@@ -20,20 +20,21 @@ export const useThemeOverridesHook = () => {
     // 亮色主题
     const lightObject = {
       common: {
-        ...commonObj.common
-      }
+        ...commonObj.common,
+      },
     }
     // 暗色主题
     const dartObject = {
       common: {
-        ...commonObj.common
+        ...commonObj.common,
       },
       LoadingBar: {
-        colorLoading: getAppTheme.value
-      }
+        colorLoading: getAppTheme.value,
+      },
     }
     return designStore.getDarkTheme ? dartObject : lightObject
   })
+  return darkTheme
 }
 // 设置暗黑主题
 export const useThemeHook = () => {
