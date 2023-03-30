@@ -3,22 +3,25 @@ import i18n from '@/i18n'
 import { FormInst } from 'naive-ui'
 import { ref, reactive } from 'vue'
 import { icon } from '@/plugins'
+import { setLocalStorage } from '../../utils/storage'
+import { LocalStorageEnum } from '@/enums/localStorageEnum'
 const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
+
 //调用
-console.log('18', i18n.global.t('global.sys_set'))
 const formRef = ref<FormInst | null>(null)
+const { GO_LOGIN_INFO_STORE } = LocalStorageEnum
 // const message = useMessage()
 const formValue = reactive({
-  name: 'admin',
-  pwd: '123456',
+  username: 'admin',
+  password: '123456',
 })
 const rules = {
-  name: {
+  username: {
     required: true,
     message: i18n.global.t('global.form_account'),
     trigger: ['blur', 'input'],
   },
-  pwd: {
+  password: {
     required: true,
     message: i18n.global.t('global.form_password'),
     trigger: ['blur', 'input'],
@@ -26,10 +29,17 @@ const rules = {
 }
 const handleLoginClick = (e: MouseEvent) => {
   e.preventDefault()
-  formRef.value?.validate()
   formRef.value?.validate((errors) => {
     if (!errors) {
-      window['$message'].success('Valid')
+      const { username, password } = formValue
+      window['$message'].success(`${i18n.global.t('login.login_success')}!`)
+      setLocalStorage(
+        GO_LOGIN_INFO_STORE,
+        JSON.stringify({
+          username,
+          password,
+        })
+      )
     } else {
       console.log(errors)
       window['$message'].error('Invalid')
@@ -43,8 +53,8 @@ const handleLoginClick = (e: MouseEvent) => {
   <div class="home-body">
     <n-card class="home-body-login">
       <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
-        <n-form-item :label="$t('login.user_name')" path="name">
-          <n-input v-model:value="formValue.name" :placeholder="$t('global.form_account')">
+        <n-form-item :label="$t('login.user_name')" path="username">
+          <n-input v-model:value="formValue.username" :placeholder="$t('global.form_account')">
             <template #prefix>
               <n-icon size="18">
                 <PersonOutlineIcon></PersonOutlineIcon>
@@ -52,8 +62,8 @@ const handleLoginClick = (e: MouseEvent) => {
             </template>
           </n-input>
         </n-form-item>
-        <n-form-item :label="$t('login.password')" path="pwd">
-          <n-input v-model:value="formValue.pwd" :placeholder="$t('global.form_password')">
+        <n-form-item :label="$t('login.password')" path="password">
+          <n-input v-model:value="formValue.password" :placeholder="$t('global.form_password')">
             <template #prefix>
               <n-icon size="18">
                 <LockClosedOutlineIcon></LockClosedOutlineIcon>
