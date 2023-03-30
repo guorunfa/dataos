@@ -2,6 +2,8 @@ import { axiosService } from './index'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { showStatus } from '@/utils'
 import { ResultEnum } from '@/enums/httpEnum'
+import { routerTurnByName } from '@/utils/route'
+import { PageEnum } from '@/enums/pageEnums'
 
 // 请求拦截器
 axiosService.interceptors.request.use(
@@ -31,11 +33,11 @@ axiosService.interceptors.response.use(
     }
 
     //登陆过期
-    // if (code === ResultEnum.TOKEN_OVERDUE) {
-    //   window['$message'].error(window['$t']('http.token_overdue_message'))
-    //   routerTurnByName(PageEnum.BASE_LOGIN_NAME)
-    //   return Promise.resolve(res.data)
-    // }
+    if (code === ResultEnum.TOKEN_OVERDUE) {
+      window['$message'].error(window['$t']('http.token_overdue_message'))
+      routerTurnByName(PageEnum.BASE_LOGIN_NAME)
+      return Promise.resolve(res.data)
+    }
 
     // 固定错误码重定向
     // if (ErrorPageNameMap.get(code)) {
