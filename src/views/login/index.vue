@@ -10,26 +10,25 @@ const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
 //调用
 const formRef = ref<FormInst | null>(null)
 const { GO_LOGIN_INFO_STORE } = LocalStorageEnum
-// const message = useMessage()
 const formValue = reactive({
   username: 'admin',
-  password: '123456',
+  password: '123456'
 })
 const rules = {
   username: {
     required: true,
     message: i18n.global.t('global.form_account'),
-    trigger: ['blur', 'input'],
+    trigger: ['blur', 'input']
   },
   password: {
     required: true,
     message: i18n.global.t('global.form_password'),
-    trigger: ['blur', 'input'],
-  },
+    trigger: ['blur', 'input']
+  }
 }
 const handleLoginClick = (e: MouseEvent) => {
   e.preventDefault()
-  formRef.value?.validate((errors) => {
+  formRef.value?.validate(errors => {
     if (!errors) {
       const { username, password } = formValue
       window['$message'].success(`${i18n.global.t('login.login_success')}!`)
@@ -37,7 +36,7 @@ const handleLoginClick = (e: MouseEvent) => {
         GO_LOGIN_INFO_STORE,
         JSON.stringify({
           username,
-          password,
+          password
         })
       )
     } else {
@@ -72,7 +71,9 @@ const handleLoginClick = (e: MouseEvent) => {
           </n-input>
         </n-form-item>
         <n-form-item>
-          <n-button type="primary" attr-type="button" @click="handleLoginClick"> {{ $t('login.form_button') }} </n-button>
+          <n-button type="primary" attr-type="button" @click="handleLoginClick">
+            {{ $t('login.form_button') }}
+          </n-button>
         </n-form-item>
       </n-form>
     </n-card>

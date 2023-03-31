@@ -1,17 +1,23 @@
 import { axiosService } from './index'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { showStatus } from '@/utils'
 import { ResultEnum } from '@/enums/httpEnum'
-import { routerTurnByName } from '@/utils/route'
-import { PageEnum } from '@/enums/pageEnums'
+import { redirectErrorPage, routerTurnByName } from '@/utils/router'
+import { ErrorPageNameMap, PageEnum } from '@/enums/pageEnums'
+import { LocalStorageEnum } from '@/enums/localStorageEnum'
+import i18n from '@/i18n'
+import { getLocalStorage } from '@/utils'
 
 // 请求拦截器
 axiosService.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    let token = localStorage.getItem('token')
-    if (token) {
-      config.headers.Authorization = `${token}`
+    // 获取 token
+    const info = getLocalStorage(LocalStorageEnum.GO_LOGIN_INFO_STORE)
+    // 重新登录
+    if (!info) {
+      routerTurnByName(PageEnum.BASE_LOGIN_NAME)
+      return config
     }
+    config.headers.Authorization = `${info}`
     return config
   },
   (error) => {
@@ -34,20 +40,15 @@ axiosService.interceptors.response.use(
 
     //登陆过期
     if (code === ResultEnum.TOKEN_OVERDUE) {
-      window['$message'].error(window['$t']('http.token_overdue_message'))
+      window['$message'].error(i18n.global.t('http.token_overdue_message'))
       routerTurnByName(PageEnum.BASE_LOGIN_NAME)
       return Promise.resolve(res.data)
     }
 
     // 固定错误码重定向
-    // if (ErrorPageNameMap.get(code)) {
-    //   redirectErrorPage(code)
-    //   return Promise.resolve(res.data)
-    // }
-
-    if (code < 200 || code >= 300) {
-      // 处理http错误，抛到业务代码
-      const msg = showStatus(code)
+    if (ErrorPageNameMap.get(code)) {
+      redirectErrorPage(code)
+      return Promise.resolve(res.data)
     }
     return Promise.resolve(res.data)
   },

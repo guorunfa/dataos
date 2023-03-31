@@ -1,4 +1,4 @@
-import { LocalStorageEnum } from '@/enums/localStorageEnum'
+import { LangEnum } from '@/enums/themeEnum'
 export interface LangStateType {
-  lang: LocalStorageEnum
+  lang: LangEnum
 }
