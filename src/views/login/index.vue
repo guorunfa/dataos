@@ -49,41 +49,47 @@ const handleLoginClick = (e: MouseEvent) => {
 </script>
 
 <template>
-  <div class="home-header">
-    <LangSelect></LangSelect>
-  </div>
-  <div class="home-body">
-    <n-card class="home-body-login">
-      <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
-        <n-form-item :label="$t('login.user_name')" path="username">
-          <n-input v-model:value="formValue.username" :placeholder="$t('global.form_account')">
-            <template #prefix>
-              <n-icon size="18">
-                <PersonOutlineIcon></PersonOutlineIcon>
-              </n-icon>
-            </template>
-          </n-input>
-        </n-form-item>
-        <n-form-item :label="$t('login.password')" path="password">
-          <n-input v-model:value="formValue.password" :placeholder="$t('global.form_password')">
-            <template #prefix>
-              <n-icon size="18">
-                <LockClosedOutlineIcon></LockClosedOutlineIcon>
-              </n-icon>
-            </template>
-          </n-input>
-        </n-form-item>
-        <n-form-item>
-          <n-button type="primary" attr-type="button" @click="handleLoginClick">
-            {{ $t('login.form_button') }}
-          </n-button>
-        </n-form-item>
-      </n-form>
-    </n-card>
+  <div class="login-box">
+    <div class="home-header">
+      <LangSelect></LangSelect>
+    </div>
+    <div class="home-body">
+      <n-card class="home-body-login">
+        <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
+          <n-form-item :label="$t('login.user_name')" path="username">
+            <n-input v-model:value="formValue.username" :placeholder="$t('global.form_account')">
+              <template #prefix>
+                <n-icon size="18">
+                  <PersonOutlineIcon></PersonOutlineIcon>
+                </n-icon>
+              </template>
+            </n-input>
+          </n-form-item>
+          <n-form-item :label="$t('login.password')" path="password">
+            <n-input v-model:value="formValue.password" :placeholder="$t('global.form_password')">
+              <template #prefix>
+                <n-icon size="18">
+                  <LockClosedOutlineIcon></LockClosedOutlineIcon>
+                </n-icon>
+              </template>
+            </n-input>
+          </n-form-item>
+          <n-form-item>
+            <n-button type="primary" attr-type="button" @click="handleLoginClick">
+              {{ $t('login.form_button') }}
+            </n-button>
+          </n-form-item>
+        </n-form>
+      </n-card>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.login-box {
+  height: 100vh;
+  overflow: hidden;
+}
 .home-body {
   display: flex;
   &-login {
