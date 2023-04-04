@@ -10,16 +10,16 @@ import en from './en/index'
 const langStorage: LangStateType = getLocalStorage(LocalStorageEnum.GO_LANG_STORE)
 
 // // 语言数组
-// export const langList = [
-//   {
-//     label: '中文',
-//     key: LangEnum.ZH
-//   },
-//   {
-//     label: 'English',
-//     key: LangEnum.EN
-//   }
-// ]
+export const langList = [
+  {
+    label: '中文',
+    key: LangEnum.ZH
+  },
+  {
+    label: 'English',
+    key: LangEnum.EN
+  }
+]
 
 const i18n = createI18n({
   legacy: false,
@@ -28,8 +28,8 @@ const i18n = createI18n({
   fallbackLocale: langStorage?.lang || lang, //  没有英文的时候默认中文语言
   messages: {
     [LangEnum.ZH]: zh,
-    [LangEnum.EN]: en,
-  },
+    [LangEnum.EN]: en
+  }
 })
 
 export default i18n

@@ -5,6 +5,7 @@ import { ref, reactive } from 'vue'
 import { icon } from '@/plugins'
 import { setLocalStorage } from '../../utils/storage'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
+import LangSelect from '@/components/LangSelect/index'
 const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
 
 //调用
@@ -48,7 +49,9 @@ const handleLoginClick = (e: MouseEvent) => {
 </script>
 
 <template>
-  <div class="home-header"></div>
+  <div class="home-header">
+    <LangSelect></LangSelect>
+  </div>
   <div class="home-body">
     <n-card class="home-body-login">
       <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">

@@ -13,15 +13,15 @@ const RootRoute: Array<RouteRecordRaw> = [
       {
         path: 'home',
         name: 'home',
-        component: () => import('@/components/Test1.vue'),
-      },
-    ],
+        component: () => import('@/views/login/index.vue')
+      }
+    ]
   },
-  LoginRoute,
+  LoginRoute
 ]
 const router = createRouter({
   history: createWebHashHistory(''),
-  routes: RootRoute,
+  routes: RootRoute
 })
 
 export function setupRouter(app: App) {
