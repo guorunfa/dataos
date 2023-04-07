@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
 import { componentRegistration, setupNaiveUI } from '@/plugins'
 import { setPinia } from '@/store'

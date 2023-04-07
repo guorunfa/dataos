@@ -55,8 +55,11 @@ const handleLoginClick = (e: MouseEvent) => {
     </div>
     <div class="home-body">
       <n-card class="home-body-login">
+        <div class="home-body-logo">
+          <img class="home-body-img" src="@/assets/images/login/input.png" alt="展示图片" />
+        </div>
         <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
-          <n-form-item :label="$t('login.user_name')" path="username">
+          <n-form-item path="username">
             <n-input v-model:value="formValue.username" :placeholder="$t('global.form_account')">
               <template #prefix>
                 <n-icon size="18">
@@ -65,7 +68,7 @@ const handleLoginClick = (e: MouseEvent) => {
               </template>
             </n-input>
           </n-form-item>
-          <n-form-item :label="$t('login.password')" path="password">
+          <n-form-item path="password">
             <n-input v-model:value="formValue.password" :placeholder="$t('global.form_password')">
               <template #prefix>
                 <n-icon size="18">
@@ -75,7 +78,7 @@ const handleLoginClick = (e: MouseEvent) => {
             </n-input>
           </n-form-item>
           <n-form-item>
-            <n-button type="primary" attr-type="button" @click="handleLoginClick">
+            <n-button size="large" type="primary" attr-type="button" @click="handleLoginClick" block>
               {{ $t('login.form_button') }}
             </n-button>
           </n-form-item>
@@ -90,11 +93,30 @@ const handleLoginClick = (e: MouseEvent) => {
   height: 100vh;
   overflow: hidden;
 }
+.home-header {
+  display: flex;
+  justify-content: right;
+  padding-right: 20px;
+  height: 60px;
+  align-items: center;
+  border-bottom: 1px solid #efeff5;
+}
 .home-body {
   display: flex;
+  margin-top: 150px;
+  justify-content: center;
   &-login {
-    @extend .go-background-filter;
+    width: 450px;
+    height: 500px;
     box-shadow: 0 0 20px 5px rgba(40, 40, 40, 0.3);
+  }
+  &-logo {
+    display: flex;
+    justify-content: center;
+  }
+  &-img {
+    width: 200px;
+    height: 200px;
   }
 }
 </style>
