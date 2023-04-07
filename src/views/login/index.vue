@@ -99,7 +99,7 @@ const handleLoginClick = (e: MouseEvent) => {
   padding-right: 20px;
   height: 60px;
   align-items: center;
-  border-bottom: 1px solid #efeff5;
+  border-bottom: 1px solid #636363;
 }
 .home-body {
   display: flex;
