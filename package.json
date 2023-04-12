@@ -5,7 +5,11 @@
   "type": "module",
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": ["rollup","webpack","types/lodash-es"]
+      "ignoreMissing": [
+        "rollup",
+        "webpack",
+        "types/lodash-es"
+      ]
     }
   },
   "scripts": {
@@ -16,6 +20,7 @@
   "dependencies": {
     "@vicons/carbon": "^0.12.0",
     "@vicons/ionicons5": "^0.12.0",
+    "axios": "^1.3.5",
     "color": "^4.2.3",
     "pinia": "^2.0.33",
     "sass": "^1.60.0",
