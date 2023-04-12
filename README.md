@@ -1,4 +1,4 @@
-# 低代码平台Vue 3 + TypeScript + Vite
+# Vue 3 + TypeScript + Vite
 
 #### setup中使用i18n
 ` import i18n from '@/i18n'`
