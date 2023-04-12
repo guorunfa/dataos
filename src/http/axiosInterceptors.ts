@@ -1,5 +1,5 @@
 import { axiosService } from './index'
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { InternalAxiosRequestConfig, AxiosResponse } from 'axios'
 import { ResultEnum } from '@/enums/httpEnum'
 import { redirectErrorPage, routerTurnByName } from '@/utils/router'
 import { ErrorPageNameMap, PageEnum } from '@/enums/pageEnums'
@@ -9,7 +9,7 @@ import { getLocalStorage } from '@/utils'
 
 // 请求拦截器
 axiosService.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     // 获取 token
     const info = getLocalStorage(LocalStorageEnum.GO_LOGIN_INFO_STORE)
     // 重新登录
@@ -20,7 +20,7 @@ axiosService.interceptors.request.use(
     config.headers.Authorization = `${info}`
     return config
   },
-  (error) => {
+  error => {
     // 错误抛到业务代码
     error.data = {}
     error.data.msg = '服务器异常，请联系管理员！'
