@@ -1,4 +1,5 @@
 @import "./var.scss";
+@import "./global.scss";
 .go-background-filter {
   backdrop-filter: $--filter-blur-base;
   // @include fetch-bg-color("filter-color");

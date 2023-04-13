@@ -1,54 +1,3 @@
-<script setup lang="ts">
-import i18n from '@/i18n'
-import { FormInst } from 'naive-ui'
-import { ref, reactive } from 'vue'
-import { icon } from '@/plugins'
-import { setLocalStorage } from '../../utils/storage'
-import { LocalStorageEnum } from '@/enums/localStorageEnum'
-import LangSelect from '@/components/LangSelect/index'
-const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
-
-//调用
-const formRef = ref<FormInst | null>(null)
-const { GO_LOGIN_INFO_STORE } = LocalStorageEnum
-const formValue = reactive({
-  username: 'admin',
-  password: '123456'
-})
-const rules = {
-  username: {
-    required: true,
-    message: i18n.global.t('global.form_account'),
-    trigger: ['blur', 'input']
-  },
-  password: {
-    required: true,
-    message: i18n.global.t('global.form_password'),
-    trigger: ['blur', 'input']
-  }
-}
-const handleLoginClick = (e: MouseEvent) => {
-  // window['$confirmMessage']('success', 'jkash')
-  e.preventDefault()
-  formRef.value?.validate(errors => {
-    if (!errors) {
-      const { username, password } = formValue
-      window['$message'].success(`${i18n.global.t('login.login_success')}!`)
-      setLocalStorage(
-        GO_LOGIN_INFO_STORE,
-        JSON.stringify({
-          username,
-          password
-        })
-      )
-    } else {
-      console.log(errors)
-      window['$message'].error('Invalid')
-    }
-  })
-}
-</script>
-
 <template>
   <div class="login-box">
     <div class="home-header">
@@ -87,7 +36,66 @@ const handleLoginClick = (e: MouseEvent) => {
       </n-card>
     </div>
   </div>
+  <Modal :visible="true">
+    <div>22222</div>
+    <div class="g-modal-footer">
+      <n-button> {{ i18n.global.t('global.r_cancel') }} </n-button>
+      <n-button type="primary"> {{ i18n.global.t('global.r_confirm') }} </n-button>
+    </div>
+  </Modal>
 </template>
+<script setup lang="ts">
+import i18n from '@/i18n'
+import { FormInst } from 'naive-ui'
+import { ref, reactive } from 'vue'
+import { icon } from '@/plugins'
+import { setLocalStorage } from '../../utils/storage'
+import { LocalStorageEnum } from '@/enums/localStorageEnum'
+import LangSelect from '@/components/LangSelect/index'
+import Modal from '@/components/Modal/index.vue'
+const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
+
+//调用
+const formRef = ref<FormInst | null>(null)
+const { GO_LOGIN_INFO_STORE } = LocalStorageEnum
+const formValue = reactive({
+  username: 'admin',
+  password: '123456'
+})
+const rules = {
+  username: {
+    required: true,
+    message: i18n.global.t('global.form_account'),
+    trigger: ['blur', 'input']
+  },
+  password: {
+    required: true,
+    message: i18n.global.t('global.form_password'),
+    trigger: ['blur', 'input']
+  }
+}
+const handleLoginClick = (e: MouseEvent) => {
+  e.preventDefault()
+  formRef.value?.validate(errors => {
+    if (!errors) {
+      const { username, password } = formValue
+      window['$confirmMessage']('success', `${i18n.global.t('login.login_success')}!`, 2000)
+      // window['$message'].success(`${i18n.global.t('login.login_success')}!`)
+      setLocalStorage(
+        GO_LOGIN_INFO_STORE,
+        JSON.stringify({
+          username,
+          password
+        })
+      )
+    } else {
+      console.log(errors)
+      window['$confirmMessage']('error', `Invalid`)
+      // window['$message'].error('Invalid')
+    }
+  })
+}
+</script>
 
 <style scoped lang="scss">
 .login-box {

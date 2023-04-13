@@ -24,6 +24,11 @@ const global = {
   r_download: 'Download',
   r_delete: 'Delete',
   r_more: 'More',
+  r_confirm: 'Confirm',
+  r_cancel: 'Cancel',
+  // 提示语
+  h_hintTitle: 'Hint',
+  h_hint: 'Are you sure you want to do this?',
 }
 
 export default {
