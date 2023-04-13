@@ -28,12 +28,11 @@ const rules = {
   }
 }
 const handleLoginClick = (e: MouseEvent) => {
+  // window['$confirmMessage']('success', 'jkash')
   e.preventDefault()
   formRef.value?.validate(errors => {
     if (!errors) {
       const { username, password } = formValue
-      console.log('window[]', window['$message'])
-
       window['$message'].success(`${i18n.global.t('login.login_success')}!`)
       setLocalStorage(
         GO_LOGIN_INFO_STORE,

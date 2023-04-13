@@ -3,6 +3,7 @@ interface Window {
   $message: any
   $dialog: any
   $notification: any
+  $confirmMessage: any
   // 语言
   $t: any
   $vue: any
