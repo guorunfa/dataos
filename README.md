@@ -1,5 +1,7 @@
 # Vue 3 + TypeScript + Vite + pnpm
 
+#### 运行
+`pnpm dev`
 #### setup中使用i18n
 ` import i18n from '@/i18n'`
 //调用

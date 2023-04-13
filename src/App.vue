@@ -1,14 +1,15 @@
 <template>
   <n-config-provider :theme="darkTheme" :theme-overrides="overridesTheme">
-    <n-message-provider>
+    <global-provider>
       <router-view></router-view>
       <n-global-style />
-    </n-message-provider>
+    </global-provider>
   </n-config-provider>
 </template>
 
 <script setup lang="ts">
 import { NConfigProvider, NGlobalStyle } from 'naive-ui'
+import { GlobalProvider } from '@/components/GlobalProvider'
 import { useThemeHook, useThemeOverridesHook } from '@/hook'
 // 暗黑模式
 const darkTheme = useThemeHook()
