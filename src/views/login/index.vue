@@ -36,13 +36,7 @@
       </n-card>
     </div>
   </div>
-  <Modal :visible="true">
-    <div>22222</div>
-    <div class="g-modal-footer">
-      <n-button> {{ i18n.global.t('global.r_cancel') }} </n-button>
-      <n-button type="primary"> {{ i18n.global.t('global.r_confirm') }} </n-button>
-    </div>
-  </Modal>
+  <confirm :visible="visible" @confirmCallback="confirmCallback"></confirm>
 </template>
 <script setup lang="ts">
 import i18n from '@/i18n'
@@ -52,7 +46,7 @@ import { icon } from '@/plugins'
 import { setLocalStorage } from '../../utils/storage'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
 import LangSelect from '@/components/LangSelect/index'
-import Modal from '@/components/Modal/index.vue'
+import confirm from '@/components/Confirm/index.vue'
 const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
 
 //调用
@@ -62,6 +56,7 @@ const formValue = reactive({
   username: 'admin',
   password: '123456'
 })
+const visible = ref<boolean>(false)
 const rules = {
   username: {
     required: true,
@@ -74,7 +69,12 @@ const rules = {
     trigger: ['blur', 'input']
   }
 }
+const confirmCallback = (val: boolean) => {
+  console.log(val)
+}
+
 const handleLoginClick = (e: MouseEvent) => {
+  visible.value = true
   e.preventDefault()
   formRef.value?.validate(errors => {
     if (!errors) {

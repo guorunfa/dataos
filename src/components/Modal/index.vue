@@ -1,34 +1,33 @@
 <template>
   <n-modal
-    preset="dialog"
+    v-model:show="showModal"
+    preset="card"
     :mask-closable="false"
     block-scroll
     :close-on-esc="closeEsc"
-    :title="modalInfo.title"
-    v-if="modalFlag"
-    v-model:show="showModal"
+    :title="modalInfoObj.title"
+    :show-icon="false"
+    :closable="modalInfoObj.closable"
+    :style="{
+      width: modalInfoObj.width + 'px',
+      height: modalInfoObj.height + 'px',
+      textAlign: modalInfoObj.titleAlign
+    }"
+    @close="closeClick"
   >
-    <slot></slot>
+    <div class="g-modal-body" :style="{ height: heightModal + 'px' }">
+      <slot></slot>
+    </div>
+    <div class="g-modal-footer">
+      <slot name="footer"></slot>
+    </div>
   </n-modal>
-  <n-modal
-    v-else
-    v-model:show="showModal"
-    :mask-closable="false"
-    block-scroll
-    :close-on-esc="closeEsc"
-    preset="dialog"
-    :title="confirmInfo.title"
-    :content="confirmInfo.content"
-    :positive-text="confirmInfo.positiveText"
-    :negative-text="confirmInfo.negativeText"
-    @positive-click="onPositiveClick"
-    @negative-click="onNegativeClick"
-  />
 </template>
 
 <script lang="ts">
 import { reactive, toRefs, watchEffect } from 'vue'
 import i18n from '@/i18n'
+import { emit } from 'process'
 export default {
   name: 'Modal',
   props: {
@@ -37,60 +36,71 @@ export default {
       type: Boolean,
       default: false
     },
-    // 内容显示二次确认还是模态框
-    modalFlag: {
-      type: Boolean,
-      default: true
-    },
+
     // 按下esc是否关闭模态框
     closeEsc: {
       type: Boolean,
       default: true
     },
-    // 二次确认数据
-    confirmInfo: {
-      type: Object,
-      default: () => {
-        return {
-          title: `${i18n.global.t('global.h_hintTitle')}`,
-          content: `${i18n.global.t('global.h_hint')}`,
-          positiveText: `${i18n.global.t('global.r_confirm')}`,
-          negativeText: `${i18n.global.t('global.r_cancel')}`
-        }
-      }
-    },
+
+    // 模态框内容
     modalInfo: {
       type: Object,
-      default: () => {
-        return {
-          title: `${i18n.global.t('global.h_hintTitle')}`,
-          content: `${i18n.global.t('global.h_hint')}`,
-          positiveText: `${i18n.global.t('global.r_confirm')}`,
-          negativeText: `${i18n.global.t('global.r_cancel')}`
-        }
-      }
+      default: () => {}
     }
   },
   setup(props, { emit }) {
     const state = reactive({
-      showModal: false
+      showModal: false,
+      heightModal: 0,
+      modalInfoObj: {
+        title: `${i18n.global.t('global.h_hintTitle')}`, // title
+        width: 800,
+        height: 600,
+        titleAlign: 'center',
+        closable: true
+      }
     })
     watchEffect(() => {
       state.showModal = props.visible
+      // 设置高度
+      state.heightModal = props.modalInfo.height - 114
+      //  处理默认值
+      state.modalInfoObj = { ...state.modalInfoObj, ...props.modalInfo }
     })
-    const onNegativeClick = () => {
-      emit('confirmCallback', false)
-    }
-    const onPositiveClick = () => {
-      emit('confirmCallback', true)
+
+    const closeClick = () => {
+      emit('modalCallback', false)
     }
 
     return {
       ...toRefs(state),
-      onNegativeClick,
-      onPositiveClick
+      closeClick
     }
   }
 }
 </script>
-<style scoped lang="less"></style>
+<style lang="scss" src scoped></style>
+<style>
+.n-card > .n-card-header {
+  padding: 16px 20px !important;
+}
+</style>
+
+<!-- 
+    <Modal
+    :visible="visible"
+    :modalInfo="{
+      width: 800,
+      height: 600,
+      titleAlign: 'center'
+    }"
+    @modalCallback="modalCallback"
+  >
+    <div class="form"></div>
+    <template #footer>
+      <n-button> {{ i18n.global.t('global.r_cancel') }} </n-button>
+      <n-button type="primary"> {{ i18n.global.t('global.r_confirm') }} </n-button>
+    </template>
+  </Modal>
+ -->

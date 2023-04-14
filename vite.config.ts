@@ -7,21 +7,21 @@ function pathResolve(dir: string) {
 }
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: [
+      {
+        find: '@',
+        replacement: pathResolve('src')
+      }
+    ]
+  },
   // 全局 css 注册
   css: {
     preprocessorOptions: {
       scss: {
         javascriptEnabled: true,
-        additionalData: `@import "src/styles/common/style.scss";`,
-      },
-    },
-  },
-  resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: pathResolve('src'),
-      },
-    ],
-  },
+        additionalData: `@import "@/styles/common/style.scss";`
+      }
+    }
+  }
 })
