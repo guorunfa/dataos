@@ -1,6 +1,6 @@
 import { PageEnum } from '@/enums/pageEnums'
 import { App } from 'vue'
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { LoginRoute } from './base'
 import { navigationGuards } from './navigationGuards'
 import Layout from '@/layout/index.vue'
@@ -17,10 +17,21 @@ const RootRoute: Array<RouteRecordRaw> = [
       }
     ]
   },
+  {
+    path: '/dashboard',
+    component: Layout,
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/dashboard/index.vue')
+      }
+    ]
+  },
   LoginRoute
 ]
 const router = createRouter({
-  history: createWebHashHistory(''),
+  history: createWebHistory(),
   routes: RootRoute
 })
 

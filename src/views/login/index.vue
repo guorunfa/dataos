@@ -36,7 +36,6 @@
       </n-card>
     </div>
   </div>
-  <confirm :visible="visible" @confirmCallback="confirmCallback"></confirm>
 </template>
 <script setup lang="ts">
 import i18n from '@/i18n'
@@ -46,9 +45,9 @@ import { icon } from '@/plugins'
 import { setLocalStorage } from '../../utils/storage'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
 import LangSelect from '@/components/LangSelect/index'
-import confirm from '@/components/Confirm/index.vue'
+import { useRouter } from 'vue-router'
 const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
-
+const router = useRouter()
 //调用
 const formRef = ref<FormInst | null>(null)
 const { GO_LOGIN_INFO_STORE } = LocalStorageEnum
@@ -56,7 +55,6 @@ const formValue = reactive({
   username: 'admin',
   password: '123456'
 })
-const visible = ref<boolean>(false)
 const rules = {
   username: {
     required: true,
@@ -69,12 +67,7 @@ const rules = {
     trigger: ['blur', 'input']
   }
 }
-const confirmCallback = (val: boolean) => {
-  console.log(val)
-}
-
 const handleLoginClick = (e: MouseEvent) => {
-  visible.value = true
   e.preventDefault()
   formRef.value?.validate(errors => {
     if (!errors) {
@@ -88,6 +81,7 @@ const handleLoginClick = (e: MouseEvent) => {
           password
         })
       )
+      router.push('dashboard')
     } else {
       console.log(errors)
       window['$confirmMessage']('error', `Invalid`)
