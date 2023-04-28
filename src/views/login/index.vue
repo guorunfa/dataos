@@ -11,20 +11,16 @@
         <n-form ref="formRef" :label-width="80" label-placement="left" :model="formValue" :rules="rules" size="large">
           <n-form-item path="username">
             <n-input v-model:value="formValue.username" :placeholder="$t('global.form_account')">
-              <template #prefix>
-                <n-icon size="18">
-                  <PersonOutlineIcon></PersonOutlineIcon>
-                </n-icon>
-              </template>
+              <n-icon size="18">
+                <PersonOutlineIcon></PersonOutlineIcon>
+              </n-icon>
             </n-input>
           </n-form-item>
           <n-form-item path="password">
             <n-input v-model:value="formValue.password" :placeholder="$t('global.form_password')">
-              <template #prefix>
-                <n-icon size="18">
-                  <LockClosedOutlineIcon></LockClosedOutlineIcon>
-                </n-icon>
-              </template>
+              <n-icon size="18">
+                <LockClosedOutlineIcon></LockClosedOutlineIcon>
+              </n-icon>
             </n-input>
           </n-form-item>
           <n-form-item>
