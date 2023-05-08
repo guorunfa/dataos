@@ -18,7 +18,7 @@ export const useDesignStore = defineStore('useDesignStore', {
     },
     getAppThemeDetail(): AppThemeColorType | null {
       return this.appThemeDetail
-    },
+    }
   },
   actions: {
     // 切换主题
@@ -31,6 +31,8 @@ export const useDesignStore = defineStore('useDesignStore', {
       this.appTheme = color.hex
       this.appThemeDetail = color
       setLocalStorage(GO_DESIGN_STORE, this.$state)
-    },
-  },
+    }
+  }
 })
+
+export { AppThemeColorType }

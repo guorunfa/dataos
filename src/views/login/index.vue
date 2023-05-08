@@ -3,6 +3,7 @@
     <div class="home-header">
       <LangSelect></LangSelect>
       <DarkLightTheme></DarkLightTheme>
+      <ThemeColorSelect></ThemeColorSelect>
     </div>
     <div class="home-body">
       <n-card class="home-body-login">
@@ -43,6 +44,7 @@ import { setLocalStorage } from '../../utils/storage'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
 import LangSelect from '@/components/LangSelect/index'
 import DarkLightTheme from '@/components/DarkLightTheme/index'
+import ThemeColorSelect from '@/views/ThemeColorSelect/index'
 import { useRouter } from 'vue-router'
 const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
 const router = useRouter()
