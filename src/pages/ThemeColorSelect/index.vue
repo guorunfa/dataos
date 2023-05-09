@@ -1,14 +1,14 @@
 <template>
   <n-button quaternary @click="modelShow = true">
-    <n-icon>
+    <n-icon size="20" :depth="1">
       <color-wand></color-wand>
     </n-icon>
   </n-button>
   <n-modal v-model:show="modelShow">
-    <div class="go-system-color-setting">
+    <div class="system-color-setting">
       <n-space justify="space-between">
         <n-h3 class="title">主题颜色选择</n-h3>
-        <n-icon size="20" class="go-cursor-pointer" @click="modelShow = false">
+        <n-icon size="20" class="cursor-pointer" @click="modelShow = false">
           <Close></Close>
         </n-icon>
       </n-space>
@@ -71,7 +71,7 @@ watch(
 
 <style lang="scss" scoped>
 $height: 85vh;
-.go-system-color-setting {
+.system-color-setting {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -81,8 +81,7 @@ $height: 85vh;
   height: $height;
   border-radius: 15px;
   overflow: hidden;
-  // @extend .go-background-filter;
-  // @include hover-border-color('background-color5');
+  background-color: rgba(0, 0, 0, 0.9);
   .title {
     margin: 0;
   }
