@@ -38,7 +38,7 @@ import { ColorWand, Close } from '@vicons/ionicons5'
 import ColorList from './components/ColorList.vue'
 import designColor from '@/staticData/designColor.json'
 import { useScroll } from '@vueuse/core'
-import { ref, computed } from 'vue'
+import { ref, computed, toRefs, watch } from 'vue'
 const modelShow = ref(false) // 弹窗显示隐藏
 const contentLeftRef = ref<HTMLElement | null>(null) // 获取dom
 const designStore = useDesignStore() // 主题颜色
@@ -53,7 +53,7 @@ const colorSelectHandle = (color: AppThemeColorType) => {
   designStore.setAppColor(color)
 }
 // 监听滚动到底部
-watch(bottom.value, (value: boolean) => {
+watch(bottom, (value: boolean) => {
   if (value) {
     splitNumber = splitNumber + 50
     designColorSplit.value = designColor.slice(0, splitNumber)
@@ -71,7 +71,7 @@ watch(
 
 <style lang="scss" scoped>
 $height: 85vh;
-@include go('system-color-setting') {
+.go-system-color-setting {
   position: relative;
   display: flex;
   flex-direction: column;

@@ -34,5 +34,3 @@ export const useDesignStore = defineStore('useDesignStore', {
     }
   }
 })
-
-export { AppThemeColorType }
