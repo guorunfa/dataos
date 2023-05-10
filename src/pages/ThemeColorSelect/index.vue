@@ -70,6 +70,7 @@ watch(
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/common/commmon_var.scss';
 $height: 85vh;
 .system-color-setting {
   position: relative;
@@ -81,7 +82,7 @@ $height: 85vh;
   height: $height;
   border-radius: 15px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: $--mainPrimaryColor;
   .title {
     margin: 0;
   }

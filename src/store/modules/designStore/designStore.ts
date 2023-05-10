@@ -7,6 +7,10 @@ import { setLocalStorage } from '@/utils/storage'
 const { GO_DESIGN_STORE } = LocalStorageEnum
 const storageDesign = getLocalStorage(GO_DESIGN_STORE)
 // const { darkTheme, appTheme, appThemeDetail } = theme
+// 动态修改自动定义颜色
+const setCssVar = (prop: any, val: any, dom = document.documentElement) => {
+  dom.style.setProperty(prop, val)
+}
 export const useDesignStore = defineStore('useDesignStore', {
   state: (): DesignStateType => storageDesign || theme,
   getters: {
@@ -30,6 +34,7 @@ export const useDesignStore = defineStore('useDesignStore', {
     setAppColor(color: AppThemeColorType): void {
       this.appTheme = color.hex
       this.appThemeDetail = color
+      setCssVar('--mainPrimaryColor', color.hex)
       setLocalStorage(GO_DESIGN_STORE, this.$state)
     }
   }
