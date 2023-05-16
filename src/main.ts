@@ -4,6 +4,7 @@ import { componentRegistration, setupNaiveUI } from '@/plugins'
 import { setPinia } from '@/store'
 import i18n from './i18n'
 import router, { setupRouter } from './router'
+import { keepTheme } from './utils'
 
 async function appInit() {
   const app = createApp(App)
@@ -20,6 +21,8 @@ async function appInit() {
   await router.isReady()
   // 语言注册
   app.use(i18n)
+  // 配色加载
+  keepTheme()
   // 挂载到页面
   app.mount('#app', true)
 }

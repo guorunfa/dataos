@@ -82,7 +82,7 @@ $height: 85vh;
   height: $height;
   border-radius: 15px;
   overflow: hidden;
-  background-color: $--mainPrimaryColor;
+  background-color: rgba(0, 0, 0, 0.7);
   .title {
     margin: 0;
   }

@@ -1,2 +1,38 @@
-// 主题配色
-$--mainPrimaryColor: var(--mainPrimaryColor, #214089); //#1890ff;
+// 主题配色逐渐加深变量
+$--mainPrimaryColor--1: var(--mainPrimaryColor--1,#247FFF);
+$--mainPrimaryColor--2: var(--mainPrimaryColor--2, #247FFF);
+$--mainPrimaryColor--3: var(--mainPrimaryColor--3, #0053C0);
+$--mainPrimaryColor--4: var(--mainPrimaryColor--4, #0053C0);
+$--mainPrimaryColor--5: var(--mainPrimaryColor--5, #00459e);
+$--mainPrimaryColor--6: var(--mainPrimaryColor--6, #003985);
+$--mainPrimaryColor--7: var(--mainPrimaryColor--7, #00367c);
+$--mainPrimaryColor--8: var(--mainPrimaryColor--8, #00285c);
+$--mainPrimaryColor--9: var(--mainPrimaryColor--9, #01142c);
+$--mainPrimaryColor--10: var(--mainPrimaryColor--10, #000205); 
+// 主题配色逐渐变浅变量
+$--mainPrimaryColor-1: var(--mainPrimaryColor-1,#e4edfa);
+$--mainPrimaryColor-2: var(--mainPrimaryColor-2, #d6e4f8);
+$--mainPrimaryColor-3: var(--mainPrimaryColor-3, #b7d3fa);
+$--mainPrimaryColor-4: var(--mainPrimaryColor-4, #8fbaf5);
+$--mainPrimaryColor-5: var(--mainPrimaryColor-5, #6ea8f8);
+$--mainPrimaryColor-6: var(--mainPrimaryColor-6, #619ef5);
+$--mainPrimaryColor-7: var(--mainPrimaryColor-7, #4e93f5);
+$--mainPrimaryColor-8: var(--mainPrimaryColor-8, #4290fc);
+$--mainPrimaryColor-9: var(--mainPrimaryColor-9, #247fff);
+$--mainPrimaryColor-10: var(--mainPrimaryColor-10, #214089); 
+// 暗黑模式配色逐渐变浅变量
+$--darkThemeColor-1: var(--darkThemeColor-1,#ffffff);
+$--darkThemeColor-2: var(--darkThemeColor-2, #dbdcdd);
+$--darkThemeColor-3: var(--darkThemeColor-3, #c3c3c4);
+$--darkThemeColor-4: var(--darkThemeColor-4, #c1c1c2);
+$--darkThemeColor-5: var(--darkThemeColor-5, #a0a0a0);
+$--darkThemeColor-6: var(--darkThemeColor-6, #969696);
+$--darkThemeColor-7: var(--darkThemeColor-7, #696969);
+$--darkThemeColor-8: var(--darkThemeColor-8, #4b4b4b);
+$--darkThemeColor-9: var(--darkThemeColor-9, #292929);
+$--darkThemeColor-10: var(--darkThemeColor-10, #050505); 
+// 默认背景颜色
+$--mainPrimaryBgColor: var(--mainPrimaryColor, #247fff);  
+$--mainPrimaryActiveColor: var(--mainPrimaryActiveColor, #0053c0); // 选中背景颜色
+$--mainPrimaryTextColor: var(--mainPrimaryTextColor, #6395FA); // 文本颜色
+$--mainPageBgColor: var(--mainPageBgColor, #f5f5f5); // 文本颜色
