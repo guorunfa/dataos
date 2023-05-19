@@ -39,6 +39,7 @@ import ColorList from './components/ColorList.vue'
 import designColor from '@/staticData/designColor.json'
 import { useScroll } from '@vueuse/core'
 import { ref, computed, toRefs, watch } from 'vue'
+import vari from '@/styles/common/export_var.module.scss'
 const modelShow = ref(false) // 弹窗显示隐藏
 const contentLeftRef = ref<HTMLElement | null>(null) // 获取dom
 const designStore = useDesignStore() // 主题颜色
@@ -82,7 +83,7 @@ $height: 85vh;
   height: $height;
   border-radius: 15px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.7);
+  // background-color: rgba(0, 0, 0, 0.7);
   .title {
     margin: 0;
   }

@@ -36,3 +36,7 @@ $--mainPrimaryBgColor: var(--mainPrimaryColor, #247fff);
 $--mainPrimaryActiveColor: var(--mainPrimaryActiveColor, #0053c0); // 选中背景颜色
 $--mainPrimaryTextColor: var(--mainPrimaryTextColor, #6395FA); // 文本颜色
 $--mainPageBgColor: var(--mainPageBgColor, #f5f5f5); // 文本颜色
+:export {
+  mainPrimaryColor1: $--mainPrimaryColor--1;
+  mainPrimaryColor2: $--mainPrimaryColor--1;
+}

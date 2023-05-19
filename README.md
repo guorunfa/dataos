@@ -9,12 +9,13 @@
 #### color [https://www.npmjs.com/package/color]
 
 #### pnpm@7.28.0
-```
-Node.js	    pnpm 5	pnpm 6	pnpm 7	pnpm 8
-Node.js 12	✔️	   ✔️	    ❌	     ❌
-Node.js 14	✔️	   ✔️	    ✔️	    ❌
-Node.js 16	?️	    ✔️	    ✔️	    ✔️
-Node.js 18	?️	    ✔️	    ✔️	    ✔️
+```javascript
+Node.js	    pnpm 5  pnpm 6  pnpm 7  pnpm 8
+Node.js 12    ✔️     ✔️      ❌     ❌
+Node.js 14    ✔️     ✔️      ✔️     ❌
+Node.js 16     ?️     ✔️      ✔️     ✔️
+Node.js 18     ?️     ✔️      ✔️     ✔️
 ```
 
 #### @vueuse/core 文档地址：[https://github.com/vueuse/vueuse][https://vueuse.org]
+#### pinia-plugin-persistedstate 保持数据持久化:[https://prazdevs.github.io/pinia-plugin-persistedstate/guide/advanced.html] 
