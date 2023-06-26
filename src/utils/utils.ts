@@ -1,5 +1,7 @@
 import Img_404 from '../assets/images/exception/image-404.png'
 import Color from 'color'
+import { NIcon } from 'naive-ui'
+import { h } from 'vue'
 import { getLocalStorage } from './storage'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
 const { GO_DESIGN_STORE } = LocalStorageEnum
@@ -71,4 +73,30 @@ export const keepTheme = () => {
   } else {
     dealMainColorDarkenLighten('--darkThemeColor', '#ffffff')
   }
+}
+/**
+ * * 生成一个不重复的ID
+ * @param { Number } randomLength
+ */
+export const getUUID = (randomLength = 10) => {
+  return Number(Math.random().toString().substring(2, randomLength) + Date.now()).toString(36)
+}
+
+/**
+ * * render 图标
+ *  @param icon 图标
+ *  @param set 设置项
+ */
+export const renderIcon = (icon: any, set = {}) => {
+  return () => h(NIcon, set, { default: () => h(icon) })
+}
+
+/**
+ * * render 语言
+ *  @param lang 语言标识
+ *  @param set 设置项
+ *  @param tag 要渲染成的标签
+ */
+export const renderLang = (lang: string, set = {}, tag = 'span') => {
+  return () => h(tag, set, { default: () => window['$t'](lang) })
 }

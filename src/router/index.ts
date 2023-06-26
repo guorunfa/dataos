@@ -4,29 +4,13 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { LoginRoute } from './base'
 import { navigationGuards } from './navigationGuards'
 import Layout from '@/layout/index.vue'
+import modules from '@/router/config'
 const RootRoute: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: PageEnum.BASE_HOME,
     component: Layout,
-    children: [
-      {
-        path: 'home',
-        name: 'home',
-        component: () => import('@/views/login/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/dashboard',
-    component: Layout,
-    children: [
-      {
-        path: 'dashboard',
-        name: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue')
-      }
-    ]
+    children: [modules.chartRoutes, modules.projectRoutes]
   },
   LoginRoute
 ]

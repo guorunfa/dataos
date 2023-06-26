@@ -45,9 +45,11 @@ import { LocalStorageEnum } from '@/enums/localStorageEnum'
 import LangSelect from '@/components/LangSelect/index'
 import DarkLightTheme from '@/components/DarkLightTheme/index'
 import { ThemeColorSelect } from '@/pages/ThemeColorSelect/index'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
+import { PageEnum } from '@/enums/pageEnums'
 const { PersonOutlineIcon, LockClosedOutlineIcon } = icon.ionicons5
-const router = useRouter()
+// const router = useRouter()
+import { routerTurnByName } from '@/utils/router'
 //调用
 const formRef = ref<FormInst | null>(null)
 const { GO_LOGIN_INFO_STORE } = LocalStorageEnum
@@ -81,7 +83,7 @@ const handleLoginClick = (e: MouseEvent) => {
           password
         })
       )
-      router.push('dashboard')
+      routerTurnByName(PageEnum.BASE_HOME_NAME)
     } else {
       console.log(errors)
       window['$confirmMessage']('error', `Invalid`)
