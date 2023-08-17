@@ -18,8 +18,6 @@ const goTo = () => {
   width: 100px;
   height: 100px;
   background: #ff0;
-  .xinjian {
-    color: red;
-  }
+
 }
 </style>
