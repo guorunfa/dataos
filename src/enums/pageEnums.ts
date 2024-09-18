@@ -5,7 +5,8 @@ export enum PageEnum {
   ERROR_PAGE_404 = 'ErrorPage404',
   // 首页
   BASE_HOME = '/project',
-  BASE_HOME_NAME = 'Project',
+  BASE_HOME_NAME = 'Project', // 我的项目
+  BASE_HOME_ITEMS = '/project/items',
 
   // 错误
   ERROR_PAGE_NAME_403 = 'ErrorPage403',

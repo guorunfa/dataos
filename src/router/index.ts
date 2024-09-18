@@ -3,7 +3,7 @@ import { App } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { LoginRoute } from './base'
 import { navigationGuards } from './navigationGuards'
-import Layout from '@/layout/index.vue'
+import { Layout } from './constant'
 import modules from '@/router/config'
 const RootRoute: Array<RouteRecordRaw> = [
   {

@@ -1,9 +1,16 @@
-import { getLocalStorage } from './storage'
 import { LocalStorageEnum } from '../enums/localStorageEnum'
 import { ResultEnum } from '@/enums/httpEnum'
-import { ErrorPageNameMap } from '@/enums/pageEnums'
+import { ErrorPageNameMap, PageEnum } from '@/enums/pageEnums'
 import router from '@/router'
+import { clearLocalStorage, getLocalStorage } from './storage'
 
+/**
+ * * 判断是否是预览页
+ * @returns boolean
+ */
+export const isPreview = () => {
+  return document.location.hash.includes('preview')
+}
 export const loginCheck = () => {
   const loginInfo = getLocalStorage(LocalStorageEnum.GO_LOGIN_INFO_STORE)
   if (!loginInfo) {
@@ -98,4 +105,12 @@ export const redirectErrorPage = (code: ResultEnum) => {
   const pageName = ErrorPageNameMap.get(code)
   if (!pageName) return false
   routerTurnByName(pageName)
+}
+
+/**
+ * * 退出
+ */
+export const logout = () => {
+  clearLocalStorage(LocalStorageEnum.GO_LOGIN_INFO_STORE)
+  routerTurnByName(PageEnum.BASE_LOGIN_NAME)
 }
