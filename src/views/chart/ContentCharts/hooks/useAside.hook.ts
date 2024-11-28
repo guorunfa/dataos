@@ -43,7 +43,7 @@ const packagesListObj = {
 export const useAsideHook = () => {
   const packagesStore = usePackagesStore()
   const menuOptions: MenuOptionsType[] = []
-  const selectValue = ref<string>('0')
+
   // 处理列表
   const handlePackagesList = () => {
     console.log('🚀 ~ handlePackagesList ~ packagesStore.packagesList:', packagesStore.packagesList)
@@ -60,10 +60,17 @@ export const useAsideHook = () => {
     }
   }
   handlePackagesList()
+  // 记录选中值
+  let beforeSelect: string = menuOptions[0]['key']
+  const selectValue = ref<string>(menuOptions[0]['key'])
+  // 选中的对象值
+  const selectOptions = ref(menuOptions[0])
   const clickItemHandle = () => {}
   return {
     selectValue,
     menuOptions,
-    clickItemHandle
+    clickItemHandle,
+    selectOptions,
+    beforeSelect
   }
 }
