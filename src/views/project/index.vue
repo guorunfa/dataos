@@ -3,6 +3,9 @@ import { fetchPathByName, routerTurnByPath } from '@/utils/router'
 import { ChartEnum, PageEnum } from '@/enums/pageEnums'
 import { getUUID } from '@/utils'
 import { LayoutHeaderPro } from '@/layout/components/LayoutHeaderPro'
+import HeaderLeftBtn from '@/views/chart/ContentHeader/headerLeftBtn/index.vue'
+import contentCharts from '@/views/chart/ContentCharts/index.vue'
+
 const goTo = () => {
   console.log('cc', PageEnum)
   const id = getUUID()
@@ -14,10 +17,15 @@ const goTo = () => {
   <div class="go-chart">
     <layout-header-pro>
         <template #left>
-          <!-- <header-left-btn></header-left-btn> -->
+          <header-left-btn></header-left-btn>
         </template>
-        
       </layout-header-pro>
+      <n-layout-content content-style="overflow:hidden; display: flex">
+        <div style="overflow:hidden; display: flex">
+          <content-charts></content-charts>
+          <!-- <content-layers></content-layers> -->
+        </div>
+        </n-layout-content>
   </div>
 </template>
 <style scoped lang="scss">
@@ -27,4 +35,4 @@ const goTo = () => {
   background: #ff0;
 
 }
-</style>
+</style>                                              

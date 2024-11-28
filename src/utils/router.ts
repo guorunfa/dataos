@@ -114,3 +114,10 @@ export const logout = () => {
   clearLocalStorage(LocalStorageEnum.GO_LOGIN_INFO_STORE)
   routerTurnByName(PageEnum.BASE_LOGIN_NAME)
 }
+/**
+ * * 回到主页面
+ * @param confirm
+ */
+export const goHome = () => {
+  routerTurnByName(PageEnum.BASE_HOME_NAME)
+}

@@ -4,6 +4,7 @@ import { NIcon } from 'naive-ui'
 import { h } from 'vue'
 import { getLocalStorage } from './storage'
 import { LocalStorageEnum } from '@/enums/localStorageEnum'
+import { WinKeyboard } from '@/enums/editPageEnum'
 const { GO_DESIGN_STORE } = LocalStorageEnum
 export function requireErrorImg() {
   return Img_404
@@ -99,4 +100,28 @@ export const renderIcon = (icon: any, set = {}) => {
  */
 export const renderLang = (lang: string, set = {}, tag = 'span') => {
   return () => h(tag, set, { default: () => window['$t'](lang) })
+}
+
+/**
+ * * 设置按下键盘按键的底部展示
+ * @param keyCode
+ * @returns
+ */
+export const setKeyboardDressShow = (keyCode?: number) => {
+  const code = new Map([
+    [17, WinKeyboard.CTRL],
+    [32, WinKeyboard.SPACE]
+  ])
+
+  const dom = document.getElementById('keyboard-dress-show')
+  if (!dom) return
+  if (!keyCode) {
+    window.onKeySpacePressHold?.(false)
+    dom.innerText = ''
+    return
+  }
+  if (keyCode && code.has(keyCode)) {
+    if (keyCode == 32) window.onKeySpacePressHold?.(true)
+    dom.innerText = `按下了「${code.get(keyCode)}」键`
+  }
 }
