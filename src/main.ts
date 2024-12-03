@@ -25,5 +25,7 @@ async function appInit() {
   keepTheme()
   // 挂载到页面
   app.mount('#app', true)
+  // 挂载到 window
+  window['$vue'] = app
 }
 void appInit()

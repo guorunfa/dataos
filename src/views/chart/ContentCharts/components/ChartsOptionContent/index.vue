@@ -1,4 +1,5 @@
 <template>
+  <div class="chart-content-box">
   <div>
     <n-menu
       v-show="hidePackageOneCategory"
@@ -10,11 +11,19 @@
       @update:value="clickItemHandle"
     ></n-menu>
   </div>
+
+    <div class="chart-content-list">
+      <n-scrollbar trigger="none">
+        <charts-item-box :menuOptions="packages.selectOptions" @deletePhoto="deleteHandle"></charts-item-box>
+      </n-scrollbar>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 
 import { reactive, ref , watch} from 'vue';
+import chartsItemBox from './chartsItemBox/index.vue'
 const props = defineProps({
   selectOptions: {
     type: Object,
@@ -81,4 +90,14 @@ watch(
 const clickItemHandle = (key: string) => {
   packages.selectOptions = packages.categorys[key]
 }
+const deleteHandle = (item: any) => {
+  const index = packages.selectOptions.findIndex((e: any) => e.id === item.id)
+  packages.selectOptions.splice(index, 1)
+  }
 </script>
+
+<style lang="scss" scoped>
+.chart-content-box {
+  display: flex;
+}
+</style>

@@ -47,3 +47,9 @@ export type ConfigType = {
   chartFrame?: ChartFrameEnum
   image: string | (() => Promise<typeof import('*.png')>)
 }
+
+// 获取组件
+export enum FetchComFlagType {
+  VIEW,
+  CONFIG
+}

@@ -125,3 +125,25 @@ export const setKeyboardDressShow = (keyCode?: number) => {
     dom.innerText = `按下了「${code.get(keyCode)}」键`
   }
 }
+
+/**
+ * * JSON序列化，支持函数和 undefined
+ * @param data
+ */
+export const JSONStringify = <T>(data: T) => {
+  return JSON.stringify(
+    data,
+    (key, val) => {
+      // 处理函数丢失问题
+      if (typeof val === 'function') {
+        return `${val}`
+      }
+      // 处理 undefined 丢失问题
+      if (typeof val === 'undefined') {
+        return null
+      }
+      return val
+    },
+    2
+  )
+}
