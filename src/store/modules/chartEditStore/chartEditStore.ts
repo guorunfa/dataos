@@ -7,8 +7,7 @@ import {
   TargetChartType,
   ChartEditStoreType
 } from './chartEditStore.d'
-export const useChartEditStore = defineStore({
-  id: 'useChartEditStore',
+export const useChartEditStore = defineStore('useChartEditStore', {
   state: (): any => ({
     // 画布属性
     editCanvas: {
@@ -42,6 +41,20 @@ export const useChartEditStore = defineStore({
     // * 设置 editCanvas 数据项
     setEditCanvas<T extends keyof EditCanvasType, K extends EditCanvasType[T]>(key: T, value: K) {
       this.editCanvas[key] = value
+    },
+    // * 设置目标数据 select
+    setTargetSelectChart(selectId?: string | string[], push: boolean = false) {
+      console.log('todo', selectId, push)
+
+      if (selectId) {
+        if (push) {
+          this.targetChart.selectId.push(selectId)
+        } else {
+          this.targetChart.selectId = [selectId]
+        }
+      } else {
+        this.targetChart.selectId = []
+      }
     }
   }
 })

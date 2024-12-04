@@ -5,7 +5,7 @@ import { getUUID } from '@/utils'
 import { LayoutHeaderPro } from '@/layout/components/LayoutHeaderPro'
 import HeaderLeftBtn from '@/views/chart/ContentHeader/headerLeftBtn/index.vue'
 import contentCharts from '@/views/chart/ContentCharts/index.vue'
-
+import ContentConfigurations from '@/views/chart/ContentConfigurations/index.vue'
 const goTo = () => {
   console.log('cc', PageEnum)
   const id = getUUID()
@@ -25,6 +25,7 @@ const goTo = () => {
           <content-charts></content-charts>
           <!-- <content-layers></content-layers> -->
         </div>
+        <ContentConfigurations></ContentConfigurations>
         </n-layout-content>
   </div>
 </template>
